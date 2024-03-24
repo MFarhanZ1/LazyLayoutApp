@@ -16,11 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountCircle
-import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.CheckCircle
-import androidx.compose.material.icons.rounded.Info
-import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -33,9 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -69,14 +63,6 @@ fun MahasiswaListItem(mahasiswa: Mahasiswa, navigateToProfile: (Mahasiswa) -> Un
                     modifier = Modifier.fillMaxWidth()
                 ) {
 
-//                    Spacer(modifier = Modifier.width(5.dp))
-//
-//                    Icon(
-//                        Icons.Rounded.Person,
-//                        contentDescription = null,
-//                        modifier = Modifier.size(25.dp).offset(y = -3.dp)
-//                    )
-
                     Spacer (modifier = Modifier.width(2.dp))
 
                     Text(
@@ -85,6 +71,7 @@ fun MahasiswaListItem(mahasiswa: Mahasiswa, navigateToProfile: (Mahasiswa) -> Un
                         fontFamily = FontFamily(
                             Font(R.font.poppins_regular)
                         ),
+                        letterSpacing = -0.4f.sp
                     )
                 }
 
