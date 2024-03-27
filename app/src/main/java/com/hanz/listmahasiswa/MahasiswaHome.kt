@@ -1,4 +1,4 @@
-package com.hanz.recyclerview
+package com.hanz.listmahasiswa
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -9,7 +9,7 @@ import com.hanz.listmahasiswa.data.DataProvider
 import com.hanz.listmahasiswa.data.model.Mahasiswa
 
 @Composable
-fun MahasiswaHomeContent(navigateToProfile: (Mahasiswa) -> Unit) {
+fun MahasiswaHomeContent() {
 
     val mahasiswa = remember {
         mutableListOf<Mahasiswa>().apply {
@@ -25,7 +25,7 @@ fun MahasiswaHomeContent(navigateToProfile: (Mahasiswa) -> Unit) {
                 it.nama
             },
             itemContent = {
-                MahasiswaListItem(mahasiswa = it, navigateToProfile)
+                MahasiswaListItem(mahasiswa = it)
             }
         )
     }
@@ -34,5 +34,5 @@ fun MahasiswaHomeContent(navigateToProfile: (Mahasiswa) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun MahasiswaHomeContentPreview(){
-    MahasiswaHomeContent({})
+    MahasiswaHomeContent()
 }

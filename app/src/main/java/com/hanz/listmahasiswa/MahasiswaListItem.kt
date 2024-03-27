@@ -1,5 +1,6 @@
-package com.hanz.recyclerview
+package com.hanz.listmahasiswa
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -34,13 +36,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hanz.listmahasiswa.R
 import com.hanz.listmahasiswa.data.DataProvider
 import com.hanz.listmahasiswa.data.model.Mahasiswa
 import com.hanz.listmahasiswa.ui.theme.ListMahasiswaTheme
 
 @Composable
-fun MahasiswaListItem(mahasiswa: Mahasiswa, navigateToProfile: (Mahasiswa) -> Unit) {
+fun MahasiswaListItem(mahasiswa: Mahasiswa) {
+    val context = LocalContext.current
+
     Card(
         modifier = Modifier
             .background(Color.Gray)
@@ -50,7 +53,11 @@ fun MahasiswaListItem(mahasiswa: Mahasiswa, navigateToProfile: (Mahasiswa) -> Un
         Row(
             Modifier
                 .padding(8.dp)
-                .clickable { navigateToProfile(mahasiswa) }) {
+                .clickable {
+                    val navigateToDetail = Intent(context,DetailView::class.java)
+                    navigateToDetail.putExtra("objMhs", mahasiswa)
+                    context.startActivity(navigateToDetail)
+                }) {
             MahasiswaImage(mahasiswa)
             Column(
                 modifier = Modifier
@@ -66,12 +73,14 @@ fun MahasiswaListItem(mahasiswa: Mahasiswa, navigateToProfile: (Mahasiswa) -> Un
                     Spacer (modifier = Modifier.width(2.dp))
 
                     Text(
-                        text = mahasiswa.nama, fontSize = 23.sp, fontWeight = FontWeight.Bold,
+                        text = mahasiswa.nama,
+                        fontSize = 23.sp,
+                        fontWeight = FontWeight.Bold,
                         overflow = TextOverflow.Ellipsis, maxLines = 1,
                         fontFamily = FontFamily(
                             Font(R.font.poppins_regular)
                         ),
-                        letterSpacing = -0.4f.sp
+                        letterSpacing = (-0.4f).sp
                     )
                 }
 
@@ -131,7 +140,7 @@ private fun MahasiswaImage(mahasiswa: Mahasiswa) {
 fun PreviewMahasiswaItem() {
     val mahasiswa = DataProvider.listMahasiswa[4]
     ListMahasiswaTheme {
-        MahasiswaListItem(mahasiswa = mahasiswa, navigateToProfile = {})
+        MahasiswaListItem(mahasiswa = mahasiswa)
     }
 }
 
@@ -140,6 +149,6 @@ fun PreviewMahasiswaItem() {
 fun PreviewMahasiswaItemDarkMode() {
     val mahasiswa = DataProvider.listMahasiswa[4]
     ListMahasiswaTheme {
-        MahasiswaListItem(mahasiswa = mahasiswa, navigateToProfile = {})
+        MahasiswaListItem(mahasiswa = mahasiswa)
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">List Mahasiswa</string>
+    <string name="title_activity_detail_view">DetailView</string>
 </resources>
